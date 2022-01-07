@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.masai.movielistapp.R
-import com.masai.movielistapp.data2.Result
+import com.masai.movielistapp.ui.adapter.MovieAdaperViewPager
+import com.masai.movielistapp.ui.adapter.MovieAdapterRecycler
+import com.masai.movielistapp.ui.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
@@ -15,41 +17,45 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private val movieViewModel by viewModels<MovieViewModel>()
-    private lateinit var movieAdapter: MovieAdapter
-    private var List = mutableListOf<Result>()
+    private lateinit var movieAdapterRecycler: MovieAdapterRecycler
+    private lateinit var movieAdapterViewPager: MovieAdaperViewPager
 
-    private lateinit var viewPagerAdapter5: ViewPagerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setRecycleview()
         setViewPager()
-        movieViewModel.searchMovie2().observe(this,){
-            List.clear()
-            List.addAll(it.results as MutableList<Result>)
-            viewPagerAdapter5.notifyDataSetChanged()
-        }
+
+        movieViewModel.searchMovie3().observe(this, {
+            lifecycleScope.launch {
+                it?.let {
+                   movieAdapterViewPager.submitData(lifecycle,it)
+                }
+            }
+        })
         movieViewModel.searchMovie().observe(this, {
             lifecycleScope.launch {
                 it?.let {
-                    movieAdapter.submitData(lifecycle, it)
+                    movieAdapterRecycler.submitData(lifecycle, it)
                 }
             }
         })
     }
+
     fun setViewPager(){
-        viewPagerAdapter5 = ViewPagerAdapter(List, this)
+        movieAdapterViewPager= MovieAdaperViewPager()
         viewPager5.apply {
-            this.adapter=viewPagerAdapter5
+            this.adapter=movieAdapterViewPager
         }
     }
 
     fun setRecycleview() {
-        movieAdapter = MovieAdapter()
+        movieAdapterRecycler = MovieAdapterRecycler()
         val linearLayoutManager = GridLayoutManager(this,3)
         recyclerview.apply {
             layoutManager = linearLayoutManager
-            this.adapter = movieAdapter
+            this.adapter = movieAdapterRecycler
         }
     }
 }

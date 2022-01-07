@@ -1,7 +1,6 @@
-package com.masai.movielistapp.api
+package com.masai.movielistapp.data.api
 
-import com.masai.movielistapp.data2.ResponseDTO
-import retrofit2.Response
+import com.masai.movielistapp.data.model.ResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,7 +11,6 @@ interface ApiService {
     }
     @GET("3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91")
     suspend fun getMovieByPage(@Query("page") page: Int): ResponseDTO
-    @GET("3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91")
-    suspend fun getMovieByPage2(@Query("page") page: Int): Response<ResponseDTO>
+
 
 }

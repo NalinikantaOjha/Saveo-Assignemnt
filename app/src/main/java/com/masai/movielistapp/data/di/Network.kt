@@ -1,6 +1,6 @@
-package com.masai.movielistapp.di
+package com.masai.movielistapp.data.di
 
-import com.masai.movielistapp.api.ApiService
+import com.masai.movielistapp.data.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

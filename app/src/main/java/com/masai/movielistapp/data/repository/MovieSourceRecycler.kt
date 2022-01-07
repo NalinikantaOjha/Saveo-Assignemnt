@@ -1,15 +1,15 @@
-package com.masai.movielistapp.data
-import com.masai.movielistapp.data2.Result
+package com.masai.movielistapp.data.repository
+import com.masai.movielistapp.data.model.Result
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.masai.movielistapp.api.ApiService
-import com.masai.movielistapp.data2.ResponseDTO
+import com.masai.movielistapp.data.api.ApiService
+import com.masai.movielistapp.data.model.ResponseDTO
 
 
-class MovieSource(private val apiService: ApiService) :
-    PagingSource<Int,Result>() {
+class MovieSourceRecycler(private val apiService: ApiService) :
+    PagingSource<Int, Result>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int,Result> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
         return try {
             val pageNumber = params.key ?: 1
             val response: ResponseDTO = apiService.getMovieByPage(pageNumber)

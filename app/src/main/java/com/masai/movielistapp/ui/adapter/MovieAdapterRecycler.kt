@@ -1,19 +1,18 @@
-package com.masai.movielistapp.ui
+package com.masai.movielistapp.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.masai.movielistapp.data2.Result
+import com.masai.movielistapp.data.model.Result
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.masai.movielistapp.R
 import kotlinx.android.synthetic.main.item_layout.view.*
-import kotlinx.android.synthetic.main.item_layout2.view.*
 
 
-class MovieAdapter :
-    PagingDataAdapter<Result, MovieAdapter.MovieViewHolder>(diffCallback = diffUtil) {
+class MovieAdapterRecycler :
+    PagingDataAdapter<Result, MovieAdapterRecycler.MovieViewHolder>(diffCallback = diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)

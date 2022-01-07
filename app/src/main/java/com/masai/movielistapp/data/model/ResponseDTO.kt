@@ -1,4 +1,4 @@
-package com.masai.movielistapp.data2
+package com.masai.movielistapp.data.model
 
 
 import com.google.gson.annotations.SerializedName
