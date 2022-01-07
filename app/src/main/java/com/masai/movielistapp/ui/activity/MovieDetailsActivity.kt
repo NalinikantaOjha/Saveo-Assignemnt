@@ -12,11 +12,13 @@ class MovieDetailsActivity : AppCompatActivity() {
     private var Date:String=""
     private var Language:String=""
     private var image:String=""
+    private var vote:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
         val intent=intent
+        vote=intent.getStringExtra("vote").toString()
         title= intent.getStringExtra("title").toString()
         Desc=intent.getStringExtra("desc").toString()
         Date=intent.getStringExtra("release").toString()
@@ -29,6 +31,5 @@ class MovieDetailsActivity : AppCompatActivity() {
         tvLanguage.text = Language
         tvDate.text = Date
         tvDescription.text = Desc
-
     }
 }

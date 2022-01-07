@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
             clipToPadding = false
             clipChildren = false
             offscreenPageLimit=3
-            setPadding(10,0,10,0);
+            setPadding(10,0,10,0)
         }
     }
 
