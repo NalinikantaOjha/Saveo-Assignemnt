@@ -1,4 +1,4 @@
-package com.masai.movielistapp.ui
+package com.masai.movielistapp.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.masai.movielistapp.R
 import com.masai.movielistapp.data.model.Result
-import com.masai.movielistapp.ui.adapter.MovieAdaperViewPager
+import com.masai.movielistapp.ui.adapter.MovieAdapterViewPager
 import com.masai.movielistapp.ui.adapter.MovieAdapterRecycler
 import com.masai.movielistapp.ui.adapter.OnClickMovie
 import com.masai.movielistapp.ui.viewmodel.MovieViewModel
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
 
     private val movieViewModel by viewModels<MovieViewModel>()
     private lateinit var movieAdapterRecycler: MovieAdapterRecycler
-    private lateinit var movieAdapterViewPager: MovieAdaperViewPager
+    private lateinit var movieAdapterViewPager: MovieAdapterViewPager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
     }
 
    fun setViewPager(){
-        movieAdapterViewPager= MovieAdaperViewPager(this)
+        movieAdapterViewPager= MovieAdapterViewPager(this)
         viewPager5.clipToPadding = false
         viewPager5.clipChildren = false
         viewPager5.offscreenPageLimit=3
@@ -71,14 +71,13 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
     }
 
     override fun onClickMovie(result: Result) {
-        val intent=Intent(this,MovieDetailsActivity::class.java)
+        val intent=Intent(this, MovieDetailsActivity::class.java)
         intent.putExtra("title",result.title)
         intent.putExtra("desc",result.overview)
         intent.putExtra("release",result.releaseDate)
         intent.putExtra("language",result.originalLanguage)
-
-
-
+        intent.putExtra("image",result.posterPath)
+        intent.putExtra("vote",result.voteCount)
         startActivity(intent)
     }
 }

@@ -8,20 +8,13 @@ import javax.inject.Inject
 
 class MovieRepository @Inject constructor(private val apiService: ApiService) {
     fun getMovieResults() =
-        Pager(
-            config = PagingConfig(
-                pageSize = 20
-            ),
-            pagingSourceFactory = {
+        Pager(config = PagingConfig(pageSize = 20), pagingSourceFactory = {
                 MovieSourceRecycler(apiService) }
         ).liveData
 
+
     fun getMovieResults2() =
-        Pager(
-            config = PagingConfig(
-                pageSize = 3
-            ),
-            pagingSourceFactory = {
+        Pager(config = PagingConfig(pageSize = 3), pagingSourceFactory = {
                 MovieSourceViewPager(apiService) }
         ).liveData
 
