@@ -12,6 +12,7 @@ class MovieSourceRecycler(private val apiService: ApiService) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
         return try {
             val pageNumber = params.key ?: 1
+
             val response: ResponseDTO = apiService.getMovieByPage(pageNumber)
             val data = response.results as List<Result>
             LoadResult.Page(

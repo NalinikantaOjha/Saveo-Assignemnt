@@ -11,12 +11,12 @@ import com.masai.movielistapp.R
 import kotlinx.android.synthetic.main.item_layout.view.*
 
 
-class MovieAdapterRecycler :
+class MovieAdapterRecycler(val onClickMovie: OnClickMovie) :
     PagingDataAdapter<Result, MovieAdapterRecycler.MovieViewHolder>(diffCallback = diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(view,onClickMovie)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -24,10 +24,14 @@ class MovieAdapterRecycler :
         holder.setData(resultsDTO!!)
     }
 
-    class MovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(private val view: View,val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
 
         fun setData(resultsDTO: Result) {
             view.apply {
+                ivImageView.setOnClickListener {
+                    onClickMovie.onClickMovie(resultsDTO)
+                }
+
                 Glide.with(ivImageView).load("https://image.tmdb.org/t/p/w500" + resultsDTO.posterPath)
                     .into(ivImageView)
             }

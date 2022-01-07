@@ -12,15 +12,17 @@ class MovieRepository @Inject constructor(private val apiService: ApiService) {
             config = PagingConfig(
                 pageSize = 20
             ),
-            pagingSourceFactory = { MovieSourceRecycler(apiService) }
+            pagingSourceFactory = {
+                MovieSourceRecycler(apiService) }
         ).liveData
 
     fun getMovieResults2() =
         Pager(
             config = PagingConfig(
-                pageSize = 20
+                pageSize = 3
             ),
-            pagingSourceFactory = { MovieSourceViewPager(apiService) }
+            pagingSourceFactory = {
+                MovieSourceViewPager(apiService) }
         ).liveData
 
 }

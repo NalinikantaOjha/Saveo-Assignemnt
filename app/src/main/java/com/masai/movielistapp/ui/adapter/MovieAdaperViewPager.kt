@@ -11,11 +11,11 @@ import com.masai.movielistapp.R
 import com.masai.movielistapp.data.model.Result
 import kotlinx.android.synthetic.main.item_layout2.view.*
 
-class MovieAdaperViewPager:  PagingDataAdapter<Result, MovieAdaperViewPager.MovieViewHolder>(diffCallback = diffUtil) {
+class MovieAdaperViewPager(val onClickMovie: OnClickMovie):  PagingDataAdapter<Result, MovieAdaperViewPager.MovieViewHolder>(diffCallback = diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout2, parent, false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(view,onClickMovie)
     }
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val resultsDTO = getItem(position)
@@ -23,10 +23,13 @@ class MovieAdaperViewPager:  PagingDataAdapter<Result, MovieAdaperViewPager.Movi
     }
 
 
-    class MovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(private val view: View,val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
 
         fun setData(resultsDTO: Result) {
             view.apply {
+                ivImageView2.setOnClickListener {
+                    onClickMovie.onClickMovie(resultsDTO)
+                }
                 Glide.with(ivImageView2).load("https://image.tmdb.org/t/p/w500" + resultsDTO.posterPath)
                     .into(ivImageView2)
             }
