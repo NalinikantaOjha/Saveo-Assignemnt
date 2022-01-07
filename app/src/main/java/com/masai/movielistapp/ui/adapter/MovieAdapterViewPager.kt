@@ -38,17 +38,9 @@ class MovieAdapterViewPager(private val onClickMovie: OnClickMovie):  PagingData
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Result>() {
             override fun areItemsTheSame(oldItem: Result, newItem: Result) =
-
                 oldItem.id == newItem.id
-
             override fun areContentsTheSame(oldItem: Result, newItem: Result) =
                 oldItem == newItem
         }
     }
-
-
-
-
-
-
 }

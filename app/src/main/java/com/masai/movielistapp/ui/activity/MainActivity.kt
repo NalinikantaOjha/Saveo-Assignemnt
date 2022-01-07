@@ -28,11 +28,10 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setRecycleview()
+        setRecyclerview()
         setViewPager()
-        scrollView1.setBackgroundColor(Color.DKGRAY)
-        relative1.setBackgroundColor(Color.DKGRAY)
-        tvNowShowing.setBackgroundColor(Color.DKGRAY)
+        setColour()
+
 
         movieViewModel.searchMovie3().observe(this, {
             lifecycleScope.launch {
@@ -50,21 +49,21 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
         })
     }
 
-   private fun setViewPager(){
+
+
+    private fun setViewPager(){
         movieAdapterViewPager= MovieAdapterViewPager(this)
         viewPager5.apply {
             this.adapter=movieAdapterViewPager
             clipToPadding = false
             clipChildren = false
-            offscreenPageLimit=5
+            offscreenPageLimit=3
             setPadding(10,0,10,0);
         }
-
-
     }
 
 
-    private fun setRecycleview() {
+    private fun setRecyclerview() {
         movieAdapterRecycler = MovieAdapterRecycler(this)
         val linearLayoutManager = GridLayoutManager(this,3)
         recyclerview.apply {
@@ -83,4 +82,9 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
         intent.putExtra("vote",result.voteCount)
         startActivity(intent)
     }
+
+    private fun setColour() {
+        scrollView1.setBackgroundColor(Color.DKGRAY)
+        relative1.setBackgroundColor(Color.DKGRAY)
+        tvNowShowing.setBackgroundColor(Color.DKGRAY)    }
 }

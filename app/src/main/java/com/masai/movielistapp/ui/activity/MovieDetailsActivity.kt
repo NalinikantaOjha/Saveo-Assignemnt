@@ -15,18 +15,19 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
+
         val intent=intent
         title= intent.getStringExtra("title").toString()
         Desc=intent.getStringExtra("desc").toString()
         Date=intent.getStringExtra("release").toString()
         Language=intent.getStringExtra("language").toString()
         image=intent.getStringExtra("image").toString()
+
         Glide.with(ivDetailsImage).load("https://image.tmdb.org/t/p/w500$image")
             .into(ivDetailsImage)
         tvTitle.text = title
         tvLanguage.text = Language
         tvDate.text = Date
-
         tvDescription.text = Desc
 
     }
