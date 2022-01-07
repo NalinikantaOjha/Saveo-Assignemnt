@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.masai.movielistapp.R
 import kotlinx.android.synthetic.main.item_layout.view.*
+import kotlinx.android.synthetic.main.item_layout2.view.*
 
 
 class MovieAdapter :
@@ -28,8 +29,8 @@ class MovieAdapter :
 
         fun setData(resultsDTO: Result) {
             view.apply {
-                Glide.with(ivCharacter).load("https://image.tmdb.org/t/p/w500" + resultsDTO.posterPath)
-                    .into(ivCharacter)
+                Glide.with(ivImageView).load("https://image.tmdb.org/t/p/w500" + resultsDTO.posterPath)
+                    .into(ivImageView)
             }
         }
     }
