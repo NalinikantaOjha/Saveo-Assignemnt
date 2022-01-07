@@ -44,5 +44,6 @@ data class Result(
 	val voteAverage: Double? = null,
 
 	@field:SerializedName("vote_count")
+
 	val voteCount: Int? = null
 )

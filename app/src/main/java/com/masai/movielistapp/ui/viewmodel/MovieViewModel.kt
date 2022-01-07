@@ -16,6 +16,7 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
         return movieRepository.getMovieResults()
     }
     fun searchMovie3(): LiveData<PagingData<Result>> {
+
         return movieRepository.getMovieResults2()
     }
 

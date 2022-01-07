@@ -18,7 +18,8 @@ class MovieSourceRecycler(private val apiService: ApiService) :
             LoadResult.Page(
                 data = data,
                 prevKey = null,
-                nextKey = if (data!!?.isEmpty()) null else pageNumber + 1
+                nextKey = if (data.isEmpty()) null else pageNumber + 1
+
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

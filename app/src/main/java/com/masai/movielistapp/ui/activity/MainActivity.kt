@@ -50,18 +50,21 @@ class MainActivity : AppCompatActivity(),OnClickMovie {
         })
     }
 
-   fun setViewPager(){
+   private fun setViewPager(){
         movieAdapterViewPager= MovieAdapterViewPager(this)
-        viewPager5.clipToPadding = false
-        viewPager5.clipChildren = false
-        viewPager5.offscreenPageLimit=3
         viewPager5.apply {
             this.adapter=movieAdapterViewPager
-
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit=5
+            setPadding(10,0,10,0);
         }
+
+
     }
 
-    fun setRecycleview() {
+
+    private fun setRecycleview() {
         movieAdapterRecycler = MovieAdapterRecycler(this)
         val linearLayoutManager = GridLayoutManager(this,3)
         recyclerview.apply {

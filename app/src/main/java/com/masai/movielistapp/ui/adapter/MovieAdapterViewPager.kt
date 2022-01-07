@@ -11,7 +11,7 @@ import com.masai.movielistapp.R
 import com.masai.movielistapp.data.model.Result
 import kotlinx.android.synthetic.main.item_layout2.view.*
 
-class MovieAdapterViewPager(val onClickMovie: OnClickMovie):  PagingDataAdapter<Result, MovieAdapterViewPager.MovieViewHolder>(diffCallback = diffUtil) {
+class MovieAdapterViewPager(private val onClickMovie: OnClickMovie):  PagingDataAdapter<Result, MovieAdapterViewPager.MovieViewHolder>(diffCallback = diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout2, parent, false)
@@ -23,7 +23,7 @@ class MovieAdapterViewPager(val onClickMovie: OnClickMovie):  PagingDataAdapter<
     }
 
 
-    class MovieViewHolder(private val view: View,val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(private val view: View, private val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
         fun setData(resultsDTO: Result) {
             view.apply {
                 ivImageView2.setOnClickListener {
@@ -38,10 +38,11 @@ class MovieAdapterViewPager(val onClickMovie: OnClickMovie):  PagingDataAdapter<
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Result>() {
             override fun areItemsTheSame(oldItem: Result, newItem: Result) =
+
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(oldItem: Result, newItem: Result) =
-                oldItem.equals(newItem)
+                oldItem == newItem
         }
     }
 

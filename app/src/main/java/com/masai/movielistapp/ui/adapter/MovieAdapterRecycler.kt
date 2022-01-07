@@ -11,7 +11,7 @@ import com.masai.movielistapp.R
 import kotlinx.android.synthetic.main.item_layout.view.*
 
 
-class MovieAdapterRecycler(val onClickMovie: OnClickMovie) :
+class MovieAdapterRecycler(private val onClickMovie: OnClickMovie) :
     PagingDataAdapter<Result, MovieAdapterRecycler.MovieViewHolder>(diffCallback = diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -24,7 +24,7 @@ class MovieAdapterRecycler(val onClickMovie: OnClickMovie) :
         holder.setData(resultsDTO!!)
     }
 
-    class MovieViewHolder(private val view: View,val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(private val view: View, private val onClickMovie: OnClickMovie) : RecyclerView.ViewHolder(view) {
 
         fun setData(resultsDTO: Result) {
             view.apply {
@@ -44,7 +44,8 @@ class MovieAdapterRecycler(val onClickMovie: OnClickMovie) :
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(oldItem: Result, newItem: Result) =
-                oldItem.equals(newItem)
+
+                oldItem == newItem
         }
     }
 

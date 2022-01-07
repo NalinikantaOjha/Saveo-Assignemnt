@@ -23,6 +23,7 @@ class Network {
     @Provides
     @Singleton
     fun getRetrofit(okHttpClient: OkHttpClient): Retrofit {
+
         return Retrofit.Builder()
             .baseUrl(ApiService.BASE_URL)
             .client(okHttpClient)

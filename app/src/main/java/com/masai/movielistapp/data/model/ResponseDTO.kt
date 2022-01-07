@@ -3,6 +3,7 @@ package com.masai.movielistapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
+
 data class ResponseDTO(
 
     @field:SerializedName("page")
